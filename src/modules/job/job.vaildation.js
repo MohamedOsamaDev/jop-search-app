@@ -8,9 +8,15 @@ import {
 const CreateJobSchemaVal = Joi.object({
   jobTitle: Joi.string().min(3).max(100).required(),
   jobDescription: Joi.string().min(3).max(500).required(),
-  jobLocation: Joi.any().valid(...Object.values(jobLocations)).required(),
-  workingTime: Joi.any().valid(...Object.values(workingTimes)).required(),
-  seniorityLevel: Joi.any().valid(...Object.values(seniorityLevels)).required(),
+  jobLocation: Joi.any()
+    .valid(...Object.values(jobLocations))
+    .required(),
+  workingTime: Joi.any()
+    .valid(...Object.values(workingTimes))
+    .required(),
+  seniorityLevel: Joi.any()
+    .valid(...Object.values(seniorityLevels))
+    .required(),
   technicalSkills: Joi.array().items(Joi.string()).required(),
   softSkills: Joi.array().items(Joi.string()).required(),
 });
@@ -26,4 +32,7 @@ const UpdatejobSchemaVal = Joi.object({
 const idSchemaVal = Joi.object({
   id: Joi.string().hex().length(24).required(),
 });
-export { CreateJobSchemaVal, UpdatejobSchemaVal, idSchemaVal };
+const searchSchemaval = Joi.object({
+  company: Joi.string().length(30).required(),
+});
+export { CreateJobSchemaVal, UpdatejobSchemaVal, idSchemaVal,searchSchemaval };

@@ -16,6 +16,7 @@ import {
   CreateJobSchemaVal,
   UpdatejobSchemaVal,
   idSchemaVal,
+  searchSchemaval,
 } from "./job.vaildation.js";
 import { checkOwnerJob } from "../../middleware/job/checkOwnerJob.js";
 import { handleCompanyOwner } from "../../middleware/authorization/handleCompanyOwner.js";
@@ -40,7 +41,12 @@ jobRouter
     createJob
   )
   .get(authorized(userRoles.company_HR, userRoles.user), getallJobs);
-jobRouter.get("/searchJobs", getJobsByCompanyName);
+jobRouter.get(
+  "/searchJobs",
+  vaildation(searchSchemaval),
+  authorized(userRoles.company_HR, userRoles.user),
+  getJobsByCompanyName
+);
 jobRouter
   .route("/:id")
   .get(authorized(userRoles.company_HR, userRoles.user), getOneJob)

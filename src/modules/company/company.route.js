@@ -51,4 +51,3 @@ companyRouter
     deleteCompany
   );
 export { companyRouter };
-//CreateCompanySchemaVal, UpdateCompanySchemaVal, idSchemaVal

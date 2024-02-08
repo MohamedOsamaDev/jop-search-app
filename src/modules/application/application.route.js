@@ -25,6 +25,5 @@ applicationRouter
     vaildation(CreateApplicationSchemaVal),
     presavePdf,
     createApplication
-  )
-applicationRouter.route("/:id");
+  );
 export { applicationRouter };
