@@ -21,8 +21,6 @@ const schema = new mongoose.Schema(
       enum: Object.values(userRoles),
       default: userRoles.user,
     },
-    userTechSkills: [],
-    userSoftSkills: [],
     confirmEmail: { type: Boolean, default: false },
     isblocked: { type: Boolean, default: false },
   },
