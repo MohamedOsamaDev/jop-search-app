@@ -15,9 +15,9 @@ import {
   UpdateCompanySchemaVal,
   idSchemaVal,
 } from "./company.vaildation.js";
-import { ownerMiddleware } from "../../middleware/authorization/ownerMiddleware.js";
-import { isCompanyExsist } from "../../middleware/authorization/isCompanyExsist.js";
-import { checkOwnerCompany } from "../../middleware/authorization/checkOwnerCompany.js";
+import { ownerMiddleware } from "../../middleware/company/ownerMiddleware.js";
+import { isCompanyExsist } from "../../middleware/company/isCompanyExsist.js";
+import { checkOwnerCompany } from "../../middleware/company/checkOwnerCompany.js";
 import { jobRouter } from "../job/job.routes.js";
 
 const companyRouter = express.Router();

@@ -11,7 +11,7 @@ export const handleIsApplyedBefore = AsyncHandler(async (req, res, next) => {
     jobId,
   });
   if (isExistbefore)
-    return next(new AppError("can not apply appliction twince", 409));
+    return next(new AppError("can not apply appliction twice", 409));
   // this to handle create excel sheet
   let company = await jobModel.findById(jobId);
   req.body.company = company.company._id;

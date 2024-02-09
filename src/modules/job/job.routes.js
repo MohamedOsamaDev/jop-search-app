@@ -10,14 +10,14 @@ import {
 } from "./job.controller.js";
 import { userRoles } from "../../assets/types/userRoles.js";
 import { authorized } from "../../middleware/authorization/authorization.js";
-import { ownerMiddleware } from "../../middleware/authorization/ownerMiddleware.js";
+import { ownerMiddleware } from "../../middleware/company/ownerMiddleware.js";
 import { vaildation } from "../../middleware/global-middleware/vaildtaion.js";
 import {
   CreateJobSchemaVal,
   searchSchemaval,
 } from "./job.vaildation.js";
 import { checkOwnerJob } from "../../middleware/job/checkOwnerJob.js";
-import { handleCompanyOwner } from "../../middleware/authorization/handleCompanyOwner.js";
+import { handleCompanyOwner } from "../../middleware/company/handleCompanyOwner.js";
 import { handleFindAllApplications } from "../../middleware/application/handleFindAllApplications.js";
 import { getallApplications } from "../application/application.controller.js";
 
