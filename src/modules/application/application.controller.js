@@ -49,7 +49,6 @@ const createExecl = AsyncHandler(async (req, res, next) => {
     { header: "mobileNumber", key: "mobileNumber", width: 30 },
     { header: "date", key: "date", width: 25 },
   ];
-  console.log(applications);
   // step 5 handle data in excel by loop
   applications.map((val, ind) => {
     sheet.addRow({
