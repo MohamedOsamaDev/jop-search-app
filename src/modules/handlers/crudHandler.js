@@ -19,6 +19,11 @@ export const FindAll = ({ model, Errormassage, param }) => {
     if (param && req.params[param]) {
       filterObject = { [param]: req.params[param] };
     }
+
+
+
+
+
     let apiFetcher = new ApiFetcher(model.find(filterObject), req.query);
     let total = new ApiFetcher(model.find(filterObject), req.query);
     total.filter().search();

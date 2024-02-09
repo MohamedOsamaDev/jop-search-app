@@ -13,7 +13,7 @@ export const isCompanyExsist = AsyncHandler(async (req, res, next) => {
     feilds: { companyName, companyEmail },
     operator: "or",
   });
-  const company = await companyModel.findById(req.params.id);
+  const company = await companyModel.findById(req.params.company);
 
   let checker = Checkcompanys.filter(
     (val) => val._id.toString() !== company?._id?.toString()

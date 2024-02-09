@@ -23,7 +23,7 @@ import { jobRouter } from "../job/job.routes.js";
 const companyRouter = express.Router();
 companyRouter.use(auth);
 companyRouter.use(
-  "/:id/jobs",
+  "/:company/jobs",
   authorized(userRoles.company_HR),
   checkOwnerCompany,
   jobRouter
@@ -40,7 +40,7 @@ companyRouter
   )
   .get(getallCompany);
 companyRouter
-  .route("/:id")
+  .route("/:company")
   .get(getOnecompany)
   .put(
     vaildation(UpdateCompanySchemaVal),
