@@ -22,7 +22,12 @@ import { jobRouter } from "../job/job.routes.js";
 
 const companyRouter = express.Router();
 companyRouter.use(auth);
-companyRouter.use("/:id/jobs", authorized(userRoles.company_HR),  checkOwnerCompany,jobRouter );
+companyRouter.use(
+  "/:id/jobs",
+  authorized(userRoles.company_HR),
+  checkOwnerCompany,
+  jobRouter
+);
 
 companyRouter
   .route("/")

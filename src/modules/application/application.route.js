@@ -8,10 +8,6 @@ import { vaildation } from "../../middleware/global-middleware/vaildtaion.js";
 import { CreateApplicationSchemaVal } from "./application.vaildation.js";
 import {
   createApplication,
-  getallApplications,
-  getOneApplication,
-  updateApplication,
-  deleteApplication,
 } from "./application.controller.js";
 import { handleFindAllApplications } from "../../middleware/application/handleFindAllApplications.js";
 

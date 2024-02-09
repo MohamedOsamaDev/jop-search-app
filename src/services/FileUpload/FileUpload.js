@@ -21,7 +21,7 @@ export const Upload = () => {
     storage,
     fileFilter,
     // limits: { fileSize: 100000 /* bytes */ },
-  }); 
+  });
   return upload;
 };
 export const fileUploadSingle = (feildname) => Upload().single(feildname);
