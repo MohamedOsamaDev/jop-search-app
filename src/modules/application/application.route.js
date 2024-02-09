@@ -6,10 +6,8 @@ import { fileUploadSingle } from "../../services/FileUpload/FileUpload.js";
 import { presavePdf } from "../../middleware/application/presave.js";
 import { vaildation } from "../../middleware/global-middleware/vaildtaion.js";
 import { CreateApplicationSchemaVal } from "./application.vaildation.js";
-import {
-  createApplication,
-} from "./application.controller.js";
-import { handleFindAllApplications } from "../../middleware/application/handleFindAllApplications.js";
+import { createApplication, createExecl } from "./application.controller.js";
+import { handleIsApplyedBefore } from "../../middleware/application/handleIsApplyedBefore.js";
 
 const applicationRouter = express.Router({ mergeParams: true });
 applicationRouter.use(auth);
@@ -19,7 +17,14 @@ applicationRouter
     fileUploadSingle("userResume"),
     authorized(userRoles.user),
     vaildation(CreateApplicationSchemaVal),
+    handleIsApplyedBefore,
     presavePdf,
     createApplication
   );
+//----- bonus  ;)
+applicationRouter.get(
+  "/excelSheet",
+  authorized(userRoles.company_HR),
+  createExecl
+);
 export { applicationRouter };

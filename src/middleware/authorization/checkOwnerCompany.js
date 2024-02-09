@@ -7,6 +7,5 @@ export const checkOwnerCompany = AsyncHandler(async (req, res, next) => {
   if (!company) return next(new AppError("company  not found", 409));
   if (company.companyHR.toString() !== res.locals.user._id.toString())
     return next(new AppError("your not the owner", 409));
-    console.log('hanaaa');
   return next();
 });

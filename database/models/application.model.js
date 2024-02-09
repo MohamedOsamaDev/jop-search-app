@@ -5,6 +5,7 @@ const schema = new mongoose.Schema(
   {
     jobId: { type: mongoose.Types.ObjectId, ref: "job", required: true },
     userId: { type: mongoose.Types.ObjectId, ref: "user", required: true },
+    company: { type: mongoose.Types.ObjectId, ref: "company", required: true },
     userTechSkills: [],
     userSoftSkills: [],
     userResume: { url: String, public_id: String },
@@ -14,7 +15,7 @@ const schema = new mongoose.Schema(
 schema.pre(/^find/, function () {
   this.populate(
     "userId",
-    'firstName lastName email mobileNumber',
+    'firstName lastName userName email mobileNumber',
   )
   this.populate("jobId");
 });
