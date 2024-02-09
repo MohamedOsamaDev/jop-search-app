@@ -16,13 +16,9 @@ import { AppError } from "../../utils/AppError.js";
 const Errormassage = "appliction";
 let model = applicationModel;
 const createApplication = InsertOne({ model, Errormassage });
-const getallApplications = FindAll({ model, Errormassage, param: "jobId" });
-const getOneApplication = FindOne({ model, Errormassage });
-const updateApplication = updateOne({ model, Errormassage });
-const deleteApplication = deleteOne({ model, Errormassage });
 // bonus
 const createExecl = AsyncHandler(async (req, res, next) => {
-  // handle specific date || to day 
+  // handle specific date || to day
   let date = req.query.date || Date.now();
   if (!!isNaN(new Date(date))) return next(new AppError("invaild date"));
   // step 1 handle find company by companyId from user id => from prev middleware (auth)
@@ -75,11 +71,4 @@ const createExecl = AsyncHandler(async (req, res, next) => {
     res.end(buffer);
   });
 });
-export {
-  createApplication,
-  getallApplications,
-  getOneApplication,
-  updateApplication,
-  deleteApplication,
-  createExecl,
-};
+export { createApplication, createExecl };
