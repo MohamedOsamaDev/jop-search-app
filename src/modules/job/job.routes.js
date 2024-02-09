@@ -14,8 +14,6 @@ import { ownerMiddleware } from "../../middleware/authorization/ownerMiddleware.
 import { vaildation } from "../../middleware/global-middleware/vaildtaion.js";
 import {
   CreateJobSchemaVal,
-  UpdatejobSchemaVal,
-  idSchemaVal,
   searchSchemaval,
 } from "./job.vaildation.js";
 import { checkOwnerJob } from "../../middleware/job/checkOwnerJob.js";
