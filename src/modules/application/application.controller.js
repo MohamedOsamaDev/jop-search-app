@@ -19,21 +19,19 @@ const createApplication = InsertOne({ model, Errormassage });
 const getallApplications = FindAll({ model, Errormassage, param: "jobId" });
 // bonus
 const createExecl = AsyncHandler(async (req, res, next) => {
-  // handle specific date || to day 
+  // handle specific date || today
   let date = req.query.date || Date.now();
   if (!!isNaN(new Date(date))) return next(new AppError("invaild date"));
   // step 1 handle find company by companyId from user id => from prev middleware (auth)
   let company = await companyModel.findOne({ companyHR: res.locals.user._id });
   // step 2 handle find company applications by companyId
-  let applications = await applicationModel
-    .find({
-      company: company._id,
-      createdAt: {
-        $gte: startOfDay(date),
-        $lte: endOfDay(date),
-      },
-    })
-    .populate("company");
+  let applications = await applicationModel.find({
+    company: company._id,
+    createdAt: {
+      $gte: startOfDay(date),
+      $lte: endOfDay(date),
+    },
+  });
 
   if (applications && !applications.length)
     return next(new AppError("no applications in this date"));
@@ -46,14 +44,21 @@ const createExecl = AsyncHandler(async (req, res, next) => {
     { header: "company", key: "company", width: 30 },
     { header: "job", key: "job", width: 30 },
     { header: "userResume", key: "userResume", width: 50 },
+    { header: "userName", key: "userName", width: 30 },
+    { header: "userEmail", key: "userEmail", width: 30 },
+    { header: "mobileNumber", key: "mobileNumber", width: 30 },
     { header: "date", key: "date", width: 25 },
   ];
+  console.log(applications);
   // step 5 handle data in excel by loop
   applications.map((val, ind) => {
     sheet.addRow({
-      company: val.company.companyName,
+      company: company.companyName,
       job: val.jobId.jobTitle,
       userResume: val.userResume.url,
+      userName: val.userId.userName,
+      userEmail: val.userId.email,
+      mobileNumber: val.userId.mobileNumber,
       date: val.createdAt,
     });
   });
@@ -65,15 +70,11 @@ const createExecl = AsyncHandler(async (req, res, next) => {
   // and give name to file excel
   res.setHeader(
     "Content-Disposition",
-    `attachment;filename=applications-${company.companyName || "document"}.xlsx`
+    `attachment;filename=applications-${(company.companyName || "document") + date}.xlsx`
   );
   // step 7 send excel to client
   Workbook.xlsx.writeBuffer().then((buffer) => {
     res.end(buffer);
   });
 });
-export {
-  createApplication,
-  getallApplications,
-  createExecl,
-};
+export { createApplication, getallApplications, createExecl };

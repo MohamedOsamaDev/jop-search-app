@@ -91,6 +91,7 @@ const findUserAccount = AsyncHandler(async (req, res, next) => {
 const changepassword = AsyncHandler(async (req, res, next) => {
   await UserModel.findByIdAndUpdate(res.locals.user._id, {
     password: bcrypt.hashSync(req.body.newpassword, 8),
+    passwordChangedAt: Date.now(),
   });
   res.json({ message: "success" });
 });
@@ -131,11 +132,14 @@ const ResetPassword = AsyncHandler(async (req, res, next) => {
   await UserModel.findByIdAndUpdate(res.locals.user._id, {
     password: req.body.newPassword,
     isresetPassword: false,
+    passwordChangedAt: Date.now(),
   });
   return res.json({ message: " Password updated successfully" });
 });
 const recoveryUsers = AsyncHandler(async (req, res, next) => {
-  let users = await UserModel.find({ recoveryEmail: req.params.email }).select("email");
+  let users = await UserModel.find({ recoveryEmail: req.params.email }).select(
+    "email"
+  );
   if (!users.length) return next(new AppError(`user not found`, 401));
   return res.json({ data: users });
 });

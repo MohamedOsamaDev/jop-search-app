@@ -17,7 +17,7 @@ const CreateJobSchemaVal = Joi.object({
   seniorityLevel: Joi.any()
     .valid(...Object.values(seniorityLevels))
     .required(),
-  technicalSkills: Joi.array().items(Joi.string()).required(),
+  technicalSkills: Joi.array().items(Joi.string().required()).required(),
   softSkills: Joi.array().items(Joi.string()).required(),
 });
 const UpdatejobSchemaVal = Joi.object({

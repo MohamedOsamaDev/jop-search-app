@@ -54,7 +54,7 @@ authRouter
   .put(vaildation(updateVal), auth, checkUniqueValues, updateUser) // update user
   .delete(auth, deleteUser); // delete my account
 authRouter.put(
-  `/me/resetPassword`,
+  `/resetPassword`,
   vaildation(updatePasswordVal),
   auth,
   comparePassword,

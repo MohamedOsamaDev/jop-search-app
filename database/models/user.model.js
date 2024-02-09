@@ -15,7 +15,7 @@ const schema = new mongoose.Schema(
     status: { type: Boolean, default: false },
     Pincode: { type: String },
     isresetPassword: { type: Boolean, default: false },
-    lastResetPassword: { type: Date },
+    passwordChangedAt: Date,
     role: {
       type: String,
       enum: Object.values(userRoles),
