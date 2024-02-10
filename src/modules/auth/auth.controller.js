@@ -112,38 +112,55 @@ const softdelete = AsyncHandler(async (req, res, next) => {
 });
 const FPsendEmail = AsyncHandler(async (req, res, next) => {
   const { email } = req.body;
-  const findUser = await UserModel.findOne({ email });
-  if (!findUser) return next(new AppError(`user not found`, 401));
-  if (findUser?.isblocked) return next(new AppError("user is blocked", 401));
   const OTB = Math.floor(100000 + Math.random() * 900000);
-  await UserModel.findByIdAndUpdate(findUser._id, {
-    OTB: OTB,
-    isresetPassword: true,
-  });
-  let session_Token = jwt.sign({ email }, process.env.SECRETKEY, {
-    expiresIn: "15m",
-  });
-  let expiresIn = {
-    milliseconds: new Date().getTime() + 15 * 60000,
-    minutes: " 15m",
-    date: new Date(new Date().getTime() + 15 * 60000).toLocaleString(),
+  await UserModel.findOneAndUpdate(
+    { email },
+    {
+      OTB: OTB,
+      isresetPassword: true,
+    }
+  );
+
+  const session = {
+    Token: jwt.sign({ email }, process.env.SECRETKEY, {
+      expiresIn: "15m",
+    }),
+    expiresIn: new Date(new Date().getTime() + 15 * 60000).toLocaleString(),
   };
+  forPasswordEmail(email, OTB);
   return res.json({
     message: `We sent email to ${email}  OTB code `,
-    expiresIn,
-    session_Token,
-    OTB,
+    session,
   });
-  // forPasswordEmail(email, OTB);
-  // return res.json({ message: `We sent email to ${email} ` });
+});
+const FPsendSMS = AsyncHandler(async (req, res, next) => {
+  const { mobileNumber } = req.body;
+  const OTB = Math.floor(100000 + Math.random() * 900000);
+  console.log("🚀 ~ FPsendSMS ~ OTB:", OTB)
+  await UserModel.findOneAndUpdate(
+    { mobileNumber },
+    {
+      OTB: OTB,
+      isresetPassword: true,
+    }
+  );
+  const session = {
+    Token: jwt.sign({ identifier: mobileNumber }, process.env.SECRETKEY, {
+      expiresIn: "15m",
+    }),
+    expiresIn: new Date(new Date().getTime() + 15 * 60000).toLocaleString(),
+  };
+  return res.json({
+    message: `We sent sms to ${mobileNumber}  OTB code `,
+    session,
+  });
 });
 const tokenForgetPassword = AsyncHandler(async (req, res, next) => {
   return res.json({ message: "vaild token" });
 });
 const ResetPassword = AsyncHandler(async (req, res, next) => {
-  req.body.newPassword = bcrypt.hashSync(req.body.newPassword, 8);
   await UserModel.findByIdAndUpdate(res.locals.user._id, {
-    password: req.body.newPassword,
+    password: bcrypt.hashSync(req.body.newPassword, 8),
     isresetPassword: false,
     passwordChangedAt: Date.now(),
   });
@@ -172,4 +189,5 @@ export {
   findMe,
   findUserAccount,
   recoveryUsers,
+  FPsendSMS
 };

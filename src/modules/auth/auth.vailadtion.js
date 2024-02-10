@@ -19,8 +19,8 @@ const signinSchemaVal = Joi.object({
     .required(),
 });
 
-const ForgetPasswordVal = Joi.object({
-  email: Joi.string().email().required(),
+const ForgetPasswordSMSVal = Joi.object({
+  mobileNumber: Joi.string().required(),
 });
 const updateVal = Joi.object({
   userName: Joi.string().min(3).max(30),
@@ -50,7 +50,7 @@ const authResetPasswordVal = Joi.object({
 export {
   signinSchemaVal,
   signupschemaVal,
-  ForgetPasswordVal,
+  ForgetPasswordSMSVal,
   updateVal,
   updatePasswordVal,
   authResetPasswordVal,

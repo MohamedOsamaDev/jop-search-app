@@ -1,11 +1,12 @@
 import bcrypt from "bcrypt";
 import { AppError } from "../../utils/AppError.js";
+import { AsyncHandler } from "../global-middleware/AsyncHandler.js";
 
-export const comparePassword = async (req, res, next) => {
+export const comparePassword = AsyncHandler(async (req, res, next) => {
   /*
-  read me 
-  this middleware for compare  password before change password 
-  */
+    read me 
+    this middleware for compare  password before change password 
+    */
   const { newpassword, currentpassword } = req.body;
   if (!bcrypt.compareSync(currentpassword, res?.locals?.user?.password))
     return next(new AppError("current password wrong !", 401));
@@ -17,4 +18,4 @@ export const comparePassword = async (req, res, next) => {
       )
     );
   return next();
-};
+});

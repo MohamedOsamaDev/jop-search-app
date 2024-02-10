@@ -15,6 +15,7 @@ import {
   findMe,
   findUserAccount,
   recoveryUsers,
+  FPsendSMS,
 } from "./auth.controller.js";
 import { vaildation } from "../../middleware/global-middleware/vaildtaion.js";
 import {
@@ -22,7 +23,7 @@ import {
   signinSchemaVal,
   updateVal,
   updatePasswordVal,
-  ForgetPasswordVal,
+  ForgetPasswordSMSVal,
   authResetPasswordVal,
 } from "./auth.vailadtion.js";
 import { isUserExist } from "../../middleware/authentication/isUserExist.js";
@@ -32,8 +33,7 @@ import { comparePassword } from "./../../middleware/authentication/comparePasswo
 import { checkUniqueValues } from "../../middleware/authentication/checkUniqueValues.js";
 import { authToken } from "./../../middleware/authentication/authToken.js";
 import { OTBChecker } from "../../middleware/authentication/OTBChecker.js";
-
- 
+import { isUserBlocked } from "../../middleware/authentication/isUserBlocked.js";
 
 const authRouter = express.Router();
 // start registration routes
@@ -62,9 +62,15 @@ authRouter.put(
   comparePassword,
   changepassword
 ); // reset password
-authRouter.route("/:id").get(auth, findUserAccount); // find user account
+authRouter.route("/:id").get(auth, findUserAccount); // find user account [share profile]
 // start forget password routes
-authRouter.post("/forgetPassword", vaildation(ForgetPasswordVal), FPsendEmail); // send email for reset password
+// authRouter.post("/forgetPassword/email", vaildation(ForgetPasswordVal),isUserBlocked('email'),FPsendEmail); // send email for reset password
+authRouter.post(
+  "/forgetPassword/sms",
+  vaildation(ForgetPasswordSMSVal),
+  isUserBlocked("mobileNumber"),
+  FPsendSMS
+); // send sms for reset password
 authRouter.get("/forgetPassword/verfiytoken", authToken, tokenForgetPassword); // this optional endpoint  for front-end to loaders(react js || next js) to check token for handle layout
 authRouter.patch(
   "/resetPassword",

@@ -12,7 +12,12 @@ export const authToken = AsyncHandler(async (req, res, next) => {
   jwt.verify(req.headers.token, process.env.SECRETKEY, async (err, decoded) => {
     if (err) return next(new AppError(err, 401));
     // step 2  check if token is valid
-    const user = await UserModel.findOne({ email: decoded.email });
+    const user = await UserModel.findOne({
+      $or: [
+        { email: decoded.identifier },
+        { mobileNumber: decoded.identifier },
+      ],
+    });
 
     if (!user) return next(new AppError(`user not found`, 401));
 
