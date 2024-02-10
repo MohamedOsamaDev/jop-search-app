@@ -138,13 +138,14 @@ const FPsendSMS = AsyncHandler(async (req, res, next) => {
   const { mobileNumber } = req.body;
   // step 2  genrate OTP code 6 digits
   const OTP = Math.floor(100000 + Math.random() * 900000);
+  console.log("🚀 ~ FPsendSMS ~ OTP:", OTP)
   let SMSOptions = {
     from: "+19723167063",
     to: mobileNumber,
     body: ` Your OTP is ${OTP}`,
   };
-  const client = Twilio(process.env.accountSid, process.env.authToken);
-  const message = await client.messages.create(SMSOptions);
+  // const client = Twilio(process.env.accountSid, process.env.authToken);
+  // const message = await client.messages.create(SMSOptions);
   // step 3 find user and update OTB and isresetPassword with new values
   await UserModel.findByIdAndUpdate(res.locals.user._id, {
     OTP: OTP,

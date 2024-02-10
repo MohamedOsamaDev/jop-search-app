@@ -73,13 +73,13 @@
 								"header": [
 									{
 										"key": "token",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiMDEwNjcxMzYzMzEiLCJpYXQiOjE3MDc1ODA3OTYsImV4cCI6MTcwNzU4MTY5Nn0.qcgbx1fSNCDBkj91-LtcHSlv0Kecrg0nORcGOj_GLCc",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiMDEwNjcxMzYzMzEiLCJpYXQiOjE3MDc1OTQ1NTcsImV4cCI6MTcwNzU5NTQ1N30.eCIR7b4veQ2OuPlDmAbdgbaLkSkQIiZyrev5yrbVwhs",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n   \"newPassword\":\"Avffvr18@fr\",\r\n   \"rePassword\":\"Avffvr18@fr\",\r\n   \"OTB\":\"292753\"\r\n}",
+									"raw": "{\r\n   \"newPassword\":\"Avffvr18@frd\",\r\n   \"rePassword\":\"Avffvr18@frd\",\r\n   \"OTP\":\"865057\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -275,13 +275,13 @@
 						"header": [
 							{
 								"key": "token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJiZjIwZThlNTg1ZjQ3M2YwMDk2IiwiaWF0IjoxNzA3NTMyMDUwfQ.B_y5iluIHslTjs8XJD3ZL3OWauoevl0wIjqULkF5uks",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNmU4NTEzMTdjOGQ0Nzc5OGUwMDliIiwiaWF0IjoxNzA3NTk0NDUzfQ.wgbfRhrvlrNPKN1qfN1GHoW8fD3p8X8b-G4aqF-VfKI",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"newpassword\":\"Osamaoahmed@1851fe\",\r\n    \"currentpassword\":\"Osama@1851fe\"\r\n}",
+							"raw": "{\r\n    \"newpassword\":\"Avffvr18@fr\",\r\n    \"currentpassword\":\"Avffvr18@fr\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -289,13 +289,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/auth/resetPassword",
+							"raw": "{{url}}/auth/changepassword",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"auth",
-								"resetPassword"
+								"changepassword"
 							]
 						}
 					},
@@ -687,7 +687,7 @@
 						"header": [
 							{
 								"key": "token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNmU4NTEzMTdjOGQ0Nzc5OGUwMDliIiwiaWF0IjoxNzA3NTg4MjM4fQ.EWmKBrs5QXD4dcwOdmHQNA9MHdm2mPcFPNP4xHS4ko8",
 								"type": "text"
 							}
 						],
