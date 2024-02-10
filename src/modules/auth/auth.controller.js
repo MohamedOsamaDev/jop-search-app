@@ -115,14 +115,27 @@ const FPsendEmail = AsyncHandler(async (req, res, next) => {
   const findUser = await UserModel.findOne({ email });
   if (!findUser) return next(new AppError(`user not found`, 401));
   if (findUser?.isblocked) return next(new AppError("user is blocked", 401));
-
-  const pincode = Math.floor(100000 + Math.random() * 900000);
-  forPasswordEmail(email, pincode);
+  const OTB = Math.floor(100000 + Math.random() * 900000);
   await UserModel.findByIdAndUpdate(findUser._id, {
-    Pincode: pincode,
+    OTB: OTB,
     isresetPassword: true,
   });
-  return res.json({ message: `We sent email to ${email} ` });
+  let session_Token = jwt.sign({ email }, process.env.SECRETKEY, {
+    expiresIn: "15m",
+  });
+  let expiresIn = {
+    milliseconds: new Date().getTime() + 15 * 60000,
+    minutes: " 15m",
+    date: new Date(new Date().getTime() + 15 * 60000).toLocaleString(),
+  };
+  return res.json({
+    message: `We sent email to ${email}  OTB code `,
+    expiresIn,
+    session_Token,
+    OTB,
+  });
+  // forPasswordEmail(email, OTB);
+  // return res.json({ message: `We sent email to ${email} ` });
 });
 const tokenForgetPassword = AsyncHandler(async (req, res, next) => {
   return res.json({ message: "vaild token" });

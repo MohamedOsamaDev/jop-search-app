@@ -33,6 +33,6 @@ const idSchemaVal = Joi.object({
   id: Joi.string().hex().length(24).required(),
 });
 const searchSchemaval = Joi.object({
-  company: Joi.string().length(30).required(),
+  company: Joi.string().max(50).required(),
 });
 export { CreateJobSchemaVal, UpdatejobSchemaVal, idSchemaVal,searchSchemaval };

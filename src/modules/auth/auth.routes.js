@@ -31,7 +31,9 @@ import { auth } from "./../../middleware/authentication/auth.js";
 import { comparePassword } from "./../../middleware/authentication/comparePassword.js";
 import { checkUniqueValues } from "../../middleware/authentication/checkUniqueValues.js";
 import { authToken } from "./../../middleware/authentication/authToken.js";
-import { PincodeCheck } from "./../../middleware/authentication/PincodeCheck.js";
+import { OTBChecker } from "../../middleware/authentication/OTBChecker.js";
+
+ 
 
 const authRouter = express.Router();
 // start registration routes
@@ -63,12 +65,12 @@ authRouter.put(
 authRouter.route("/:id").get(auth, findUserAccount); // find user account
 // start forget password routes
 authRouter.post("/forgetPassword", vaildation(ForgetPasswordVal), FPsendEmail); // send email for reset password
-authRouter.get("/forgetPassword/:token", authToken, tokenForgetPassword); // this optional endpoint  for front-end to loaders(react js || next js) to check token for handle layout
+authRouter.get("/forgetPassword/verfiytoken", authToken, tokenForgetPassword); // this optional endpoint  for front-end to loaders(react js || next js) to check token for handle layout
 authRouter.patch(
   "/resetPassword",
   vaildation(authResetPasswordVal),
   authToken,
-  PincodeCheck,
+  OTBChecker,
   ResetPassword
 ); // reset password if token vaild
 authRouter.get("/recoveryemail/:email", recoveryUsers);

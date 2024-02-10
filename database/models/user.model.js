@@ -13,7 +13,7 @@ const schema = new mongoose.Schema(
     mobileNumber: { type: String, required: true, unique: true },
     DOB: { type: Date },
     status: { type: Boolean, default: false },
-    Pincode: { type: String },
+    OTB: { type: String },
     isresetPassword: { type: Boolean, default: false },
     passwordChangedAt: Date,
     role: {

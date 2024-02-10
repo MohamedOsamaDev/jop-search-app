@@ -9,7 +9,7 @@ const CreateCompanySchemaVal = Joi.object({
   companyEmail: Joi.string().email().required(),
 }); 
 const UpdateCompanySchemaVal = Joi.object({
-  id: Joi.string().hex().length(24).required(),
+  company: Joi.string().hex().length(24).required(),
   companyName: Joi.string().min(3).max(30),
   description: Joi.string().min(3).max(500),
   industry: Joi.string().min(3).max(200),
@@ -19,6 +19,6 @@ const UpdateCompanySchemaVal = Joi.object({
   companyHR: Joi.string().hex().length(24),
 });
 const idSchemaVal = Joi.object({
-  id: Joi.string().hex().length(24).required(),
+  company: Joi.string().hex().length(24).required(),
 });
 export { CreateCompanySchemaVal, UpdateCompanySchemaVal, idSchemaVal };

@@ -17,7 +17,7 @@ import {
   searchSchemaval,
 } from "./job.vaildation.js";
 import { checkOwnerJob } from "../../middleware/job/checkOwnerJob.js";
-import { handleCompanyOwner } from "../../middleware/company/handleCompanyOwner.js";
+import { handleCompanyOwner } from "../../middleware/job/handleCompanyOwner.js";
 import { handleFindAllApplications } from "../../middleware/application/handleFindAllApplications.js";
 import { getallApplications } from "../application/application.controller.js";
 

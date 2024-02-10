@@ -4,6 +4,10 @@ import { isThisFeildsExist } from "../../utils/isThisFeildsExist.js";
 import { AsyncHandler } from "../global-middleware/AsyncHandler.js";
 
 export const isUserExist = AsyncHandler(async (req, res, next) => {
+  /*
+  read me 
+  this middleware to function isThisFeildsEx  is custom function to check if user is already present in the database 
+  */
   const user = await isThisFeildsExist({
     model: UserModel,
     feilds: { email: req.body.email, mobileNumber: req.body.mobileNumber },
@@ -13,6 +17,3 @@ export const isUserExist = AsyncHandler(async (req, res, next) => {
   if (!!user.length) return next(new AppError("user already exists. ", 409));
   next();
 });
-/* please read me !
-function isThisFeildsEx  is custom function to check if user is already present in the database 
-*/

@@ -2,6 +2,10 @@ import bcrypt from "bcrypt";
 import { AppError } from "../../utils/AppError.js";
 
 export const comparePassword = async (req, res, next) => {
+  /*
+  read me 
+  this middleware for compare  password before change password 
+  */
   const { newpassword, currentpassword } = req.body;
   if (!bcrypt.compareSync(currentpassword, res?.locals?.user?.password))
     return next(new AppError("current password wrong !", 401));
