@@ -14,6 +14,7 @@ export const isUserBlocked = (identifier) => {
     const findUser = await UserModel.findOne(query);
     if (!findUser) return next(new AppError(`user not found`, 401));
     if (findUser?.isblocked) return next(new AppError("user is blocked", 401));
+    res.locals.user = findUser
     return next();
   });
 };

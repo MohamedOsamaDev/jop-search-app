@@ -134,22 +134,24 @@ const FPsendEmail = AsyncHandler(async (req, res, next) => {
   });
 });
 const FPsendSMS = AsyncHandler(async (req, res, next) => {
+  //step 1 extract  mobile number from request
   const { mobileNumber } = req.body;
+  // step 2  genrate OTb code 6 digits
   const OTB = Math.floor(100000 + Math.random() * 900000);
-  console.log("🚀 ~ FPsendSMS ~ OTB:", OTB)
-  await UserModel.findOneAndUpdate(
-    { mobileNumber },
-    {
-      OTB: OTB,
-      isresetPassword: true,
-    }
-  );
+  console.log("🚀 ~ FPsendSMS ~ OTB:", OTB);
+  // step 3 find user and update OTB and isresetPassword with new values
+  await UserModel.findByIdAndUpdate(res.locals.user._id, {
+    OTB: OTB,
+    isresetPassword: true,
+  });
+  // step 4 create session to front end
   const session = {
     Token: jwt.sign({ identifier: mobileNumber }, process.env.SECRETKEY, {
       expiresIn: "15m",
     }),
     expiresIn: new Date(new Date().getTime() + 15 * 60000).toLocaleString(),
   };
+  // step 5 return response to clinet side
   return res.json({
     message: `We sent sms to ${mobileNumber}  OTB code `,
     session,
@@ -159,6 +161,7 @@ const tokenForgetPassword = AsyncHandler(async (req, res, next) => {
   return res.json({ message: "vaild token" });
 });
 const ResetPassword = AsyncHandler(async (req, res, next) => {
+  
   await UserModel.findByIdAndUpdate(res.locals.user._id, {
     password: bcrypt.hashSync(req.body.newPassword, 8),
     isresetPassword: false,
@@ -189,5 +192,5 @@ export {
   findMe,
   findUserAccount,
   recoveryUsers,
-  FPsendSMS
+  FPsendSMS,
 };
