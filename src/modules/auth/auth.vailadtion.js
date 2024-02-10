@@ -11,8 +11,6 @@ const signupschemaVal = Joi.object({
   rePassword: Joi.valid(Joi.ref("password")).required(),
   DOB: Joi.date().required(),
   mobileNumber: Joi.string().required(),
-  userTechSkills: Joi.array(),
-  userSoftSkills: Joi.array(),
 });
 const signinSchemaVal = Joi.object({
   identifier: Joi.string().required(),
@@ -33,8 +31,6 @@ const updateVal = Joi.object({
   rePassword: Joi.valid(Joi.ref("password")),
   DOB: Joi.date(),
   mobileNumber: Joi.string(),
-  userTechSkills: Joi.array(),
-  userSoftSkills: Joi.array(),
 });
 const updatePasswordVal = Joi.object({
   newpassword: Joi.string()

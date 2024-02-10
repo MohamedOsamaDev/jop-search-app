@@ -27,13 +27,21 @@ const schema = new mongoose.Schema(
   { timestamps: true }
 );
 
-schema.pre("save", function() {
+schema.pre("save", function () {
   if (this.password) this.password = bcrypt.hashSync(this.password, 8);
   this.userName = this.firstName + this.lastName;
 });
 
-schema.pre("findOneAndUpdate", function() {
-  if (this._update.password)
+schema.pre("findOneAndUpdate", function () {
+  if (this._update.password) {
     this.password = bcrypt.hashSync(this._update.password, 8);
+  }
+  this.select("-password -OTB");
+});
+schema.pre("findOneAndDelete", function () {
+  this.select("-password -OTB");
+});
+schema.pre("find", function () {
+  this.select("-password -OTB");
 });
 export const UserModel = mongoose.model("user", schema);

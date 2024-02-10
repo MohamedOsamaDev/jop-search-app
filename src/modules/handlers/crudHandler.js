@@ -4,12 +4,16 @@ import { AppError } from "../../utils/AppError.js";
 import { ApiFetcher } from "../../utils/Fetcher.js";
 import { UserModel } from "../../../database/models/user.model.js";
 
-export const InsertOne = ({ model, Errormassage }) => {
+export const InsertOne = ({ model, Errormassage, noReturnValue }) => {
   return AsyncHandler(async (req, res, next) => {
     const document = new model(req.body);
     await document.save();
+    let data = document;
+    if (noReturnValue) {
+      data = `${noReturnValue} added successfully`;
+    }
     return res.json({
-      data: document,
+      data,
     });
   });
 };
@@ -39,7 +43,9 @@ export const FindAll = ({ model, Errormassage, param }) => {
 };
 export const FindOne = ({ model, Errormassage }) => {
   return AsyncHandler(async (req, res, next) => {
-    const document = await model.findById(req.params.id);
+    const document = await model
+      .findById(req.params.id)
+      .select("-password -OTB ");
     if (!document) return next(new AppError(Errormassage, 404));
     return res.json({
       data: document,
