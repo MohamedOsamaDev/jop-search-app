@@ -1,0 +1,955 @@
+{
+	"info": {
+		"_postman_id": "b33577e9-e706-46df-b8ca-35a05eef0abf",
+		"name": "jop search project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31167202",
+		"_collection_link": "https://winter-firefly-764571.postman.co/workspace/My-Workspace~d5b6311b-3770-417b-85ef-666033e037c2/collection/31167202-b33577e9-e706-46df-b8ca-35a05eef0abf?action=share&source=collection_link&creator=31167202"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "forget password routes",
+					"item": [
+						{
+							"name": "send sms to reset password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mobileNumber\": \"01067136331\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/forgetPassword/sms",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"forgetPassword",
+										"sms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "check token is vaild ?",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1vaGFtZWRvc2FtYTE4NUBnbWFpbC5jb20iLCJpYXQiOjE3MDc1Mjg3NjAsImV4cCI6MTcwNzUyOTY2MH0.5CokFKFHdRnRBs8PueVXz7jt0bj6z7GgWgjMyemIQUY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/auth/forgetPassword/verfiytoken",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"forgetPassword",
+										"verfiytoken"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "rest password is token is vaild",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiMDEwNjcxMzYzMzEiLCJpYXQiOjE3MDc1ODA3OTYsImV4cCI6MTcwNzU4MTY5Nn0.qcgbx1fSNCDBkj91-LtcHSlv0Kecrg0nORcGOj_GLCc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"newPassword\":\"Avffvr18@fr\",\r\n   \"rePassword\":\"Avffvr18@fr\",\r\n   \"OTB\":\"292753\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/resetPassword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"resetPassword"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"firstName\":\"moahmed\",\r\n\"lastName\":\"osama\",\r\n\"rePassword\":\"Osama@1851fe\",\r\n\"password\":\"Osama@1851fe\",\r\n\"email\":\"mohamed10085@gmail.com\",\r\n\"DOB\":\"Wed Feb 07 2024 22:04:09 GMT+0200\",\r\n\"mobileNumber\":\"01067136331\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "log in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"identifier\": \"mohamed10085@gmail.com\",\r\n    \"password\": \"Osama@1851fe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "log out",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verfiy my email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/auth/verify/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verify",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update me",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"mohamedosama185@gmail.com\",\r\n    \"mobileNumber\": \"1515818\",\r\n    \"recoveryEmail\": \"mohamecd1@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get my data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/auth/65c4655380727b25876f5116",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"65c4655380727b25876f5116"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all accounts associated to a specific recovery Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/auth/recoveryemail/mohamecd1@gmail.com",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"recoveryemail",
+								"mohamecd1@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change my password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJiZjIwZThlNTg1ZjQ3M2YwMDk2IiwiaWF0IjoxNzA3NTMyMDUwfQ.B_y5iluIHslTjs8XJD3ZL3OWauoevl0wIjqULkF5uks",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newpassword\":\"Osamaoahmed@1851fe\",\r\n    \"currentpassword\":\"Osama@1851fe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "company",
+			"item": [
+				{
+					"name": "1 create company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\": \"Alpha Cdodez\",\r\n    \"description\": \"The best website development company \",\r\n    \"industry\": \"web sites\",\r\n    \"address\": \"19 50 maadi\",\r\n    \"numberOfEmployees\": 19,\r\n    \"companyEmail\": \"mohamedosama100085@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/companyies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"companyies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2 update company",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\": \"Alpha Codez wd\",\r\n    \"description\": \"The best website development company \",\r\n    \"industry\": \"web sites\",\r\n    \"address\": \"19 50 maadi\",\r\n    \"numberOfEmployees\": 19,\r\n    \"companyEmail\": \"mohamedosamas10085@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/companyies/65c6d5bae187e206bf09c46d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"companyies",
+								"65c6d5bae187e206bf09c46d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3 delete company",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/companyies/65c6d5bae187e206bf09c46d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"companyies",
+								"65c6d5bae187e206bf09c46d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4 Get company data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/companyies/65c6d825891378ce54e4ae8c/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"companyies",
+								"65c6d825891378ce54e4ae8c",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5 Search for a company with a name.",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/companyies?keyword[companyName]=a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"companyies"
+							],
+							"query": [
+								{
+									"key": "keyword[companyName]",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6 Get all applications for specific Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/jobs/65c6d916891378ce54e4aece/applications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs",
+								"65c6d916891378ce54e4aece",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "jobs",
+			"item": [
+				{
+					"name": "1 Add Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobTitle\":\"php\",\r\n    \"jobDescription\":\"back end development\",\r\n    \"jobLocation\":\"onsite\",\r\n    \"workingTime\":\"part-time\",\r\n    \"seniorityLevel\":\"Junior\",\r\n    \"technicalSkills\":[\"node-js\",\"ruby,php\"],\r\n    \"softSkills\":[\"communication with team\",\"ded\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2 Update Job",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobTitle\": \"phps\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/jobs/65c6d8a8891378ce54e4ae9f",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs",
+								"65c6d8a8891378ce54e4ae9f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3 Delete Job",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/jobs/65c6d8a8891378ce54e4ae9f",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs",
+								"65c6d8a8891378ce54e4ae9f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4 Get all Jobs with their company’s information.",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5 Get all Jobs for a specific company.",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/jobs/searchJobs?company=Alpha Cdodez",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs",
+								"searchJobs"
+							],
+							"query": [
+								{
+									"key": "company",
+									"value": "Alpha Cdodez"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6 all jobs with filters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/companyies/?filter[companyName]=Alpha Cdodez&filter[numberOfEmployees]=12",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"companyies",
+								""
+							],
+							"query": [
+								{
+									"key": "filter[companyName]",
+									"value": "Alpha Cdodez"
+								},
+								{
+									"key": "filter[description]",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "filter[industry]",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "filter[address]",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "filter[numberOfEmployees]",
+									"value": "12"
+								},
+								{
+									"key": "filter[companyEmail]",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "application",
+			"item": [
+				{
+					"name": "apply  application",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "userResume",
+									"type": "file",
+									"src": "/C:/Users/Mohamed Osama/OneDrive/Documents/Mohamed Osama Fayez.pdf"
+								},
+								{
+									"key": "jobId",
+									"value": "65c6d916891378ce54e4aece",
+									"type": "text"
+								},
+								{
+									"key": "userTechSkills",
+									"value": "vrverrv",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "userSoftSkills",
+									"value": "cewwve",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "userSoftSkills",
+									"value": "nytnyt",
+									"type": "text"
+								},
+								{
+									"key": "userTechSkills",
+									"value": "cwecece",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/applications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all applications for specific Job",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNDY1NTM4MDcyN2IyNTg3NmY1MTE2IiwiaWF0IjoxNzA3MzY5ODg0fQ.caXm-CNO2fCsOygW5j-d5wXF7VdjgkhzLx9edyL16Fc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/jobs/65c6d916891378ce54e4aece/applications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs",
+								"65c6d916891378ce54e4aece",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bonus",
+			"item": [
+				{
+					"name": "create excel to HR",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/applications/excelSheet",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"applications",
+								"excelSheet"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2024-02",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "super admin !",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJiZjIwZThlNTg1ZjQ3M2YwMDk2IiwiaWF0IjoxNzA3NTMyMDUwfQ.B_y5iluIHslTjs8XJD3ZL3OWauoevl0wIjqULkF5uks",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"mohamed\",\r\n    \"lastName\":\"osama\",\r\n    \"email\":\"moahmeddosama@gmail.com\",\r\n    \"password\":\"Acvrvrv@15\",\r\n     \"rePassword\":\"Acvrvrv@15\",\r\n     \"DOB\":\"2/2/2020\",\r\n     \"mobileNumber\":\"505185150\",\r\n     \"role\":\"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJiZjIwZThlNTg1ZjQ3M2YwMDk2IiwiaWF0IjoxNzA3NTMyMDUwfQ.B_y5iluIHslTjs8XJD3ZL3OWauoevl0wIjqULkF5uks",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find one User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJiZjIwZThlNTg1ZjQ3M2YwMDk2IiwiaWF0IjoxNzA3NTMyMDUwfQ.B_y5iluIHslTjs8XJD3ZL3OWauoevl0wIjqULkF5uks",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users/65c52cbe3c36e83a030c392d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"65c52cbe3c36e83a030c392d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJiZjIwZThlNTg1ZjQ3M2YwMDk2IiwiaWF0IjoxNzA3NTMzOTE1fQ.pONpj2hoG5W2P71gamruRTCDcccDTAiRhZQymayvJIQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\":\"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/65c52cbe3c36e83a030c392d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"65c52cbe3c36e83a030c392d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNmU4NTEzMTdjOGQ0Nzc5OGUwMDliIiwiaWF0IjoxNzA3NTM0NDc5fQ.W2oLWA-es1OA7O8aH74bqlB8MOiCFDHtZqlNC2_9eYg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users/65c6e851317c8d47798e009b",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"65c6e851317c8d47798e009b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
