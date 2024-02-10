@@ -6,7 +6,7 @@ export const authorized = (...permissions) => {
   read me
   this middleware to handle unAuthorized requests 
   */
-  return AsyncHandler((req, res, next) => {
+  return AsyncHandler(async (req, res, next) => {
     if (permissions.includes(res.locals.user.role)) {
       return next();
     } else {
