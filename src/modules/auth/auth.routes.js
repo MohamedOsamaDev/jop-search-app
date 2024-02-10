@@ -32,7 +32,7 @@ import { auth } from "./../../middleware/authentication/auth.js";
 import { comparePassword } from "./../../middleware/authentication/comparePassword.js";
 import { checkUniqueValues } from "../../middleware/authentication/checkUniqueValues.js";
 import { authToken } from "./../../middleware/authentication/authToken.js";
-import { OTBChecker } from "../../middleware/authentication/OTBChecker.js";
+import { OTPChecker } from "../../middleware/authentication/OTPChecker.js";
 import { isUserBlocked } from "../../middleware/authentication/isUserBlocked.js";
 
 const authRouter = express.Router();
@@ -76,7 +76,7 @@ authRouter.patch(
   "/resetPassword",
   vaildation(authResetPasswordVal),
   authToken,
-  OTBChecker,
+  OTPChecker,
   ResetPassword
 ); // reset password if token vaild
 authRouter.get("/recoveryemail/:email", recoveryUsers);

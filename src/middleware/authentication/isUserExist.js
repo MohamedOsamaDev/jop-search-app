@@ -6,7 +6,7 @@ import { AsyncHandler } from "../global-middleware/AsyncHandler.js";
 export const isUserExist = AsyncHandler(async (req, res, next) => {
   /*
   read me 
-  this middleware to function isThisFeildsEx  is custom function to check if user is already present in the database 
+  this middleware  to check if user is not already present in the database 
   */
   const user = await isThisFeildsExist({
     model: UserModel,

@@ -13,3 +13,5 @@ export const isThisFeildsExist = async ({ model, feilds, operator }) => {
   const document = await model.find(filterObj);
   return document;
 };
+
+

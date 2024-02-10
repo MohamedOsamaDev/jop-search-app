@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 import bcrypt from "bcrypt";
-
+import Twilio from "twilio";
 import { AppError } from "../../utils/AppError.js";
 import { forPasswordEmail } from "../../services/mails/forgetPassword/forgetPassword.Email.js";
 import { confirmEmail } from "../../services/mails/confirmation/confirmation.email.js";
@@ -136,12 +136,18 @@ const FPsendEmail = AsyncHandler(async (req, res, next) => {
 const FPsendSMS = AsyncHandler(async (req, res, next) => {
   //step 1 extract  mobile number from request
   const { mobileNumber } = req.body;
-  // step 2  genrate OTb code 6 digits
-  const OTB = Math.floor(100000 + Math.random() * 900000);
-  console.log("🚀 ~ FPsendSMS ~ OTB:", OTB);
+  // step 2  genrate OTP code 6 digits
+  const OTP = Math.floor(100000 + Math.random() * 900000);
+  let SMSOptions = {
+    from: "+19723167063",
+    to: mobileNumber,
+    body: ` Your OTP is ${OTP}`,
+  };
+  const client = Twilio(process.env.accountSid, process.env.authToken);
+  const message = await client.messages.create(SMSOptions);
   // step 3 find user and update OTB and isresetPassword with new values
   await UserModel.findByIdAndUpdate(res.locals.user._id, {
-    OTB: OTB,
+    OTP: OTP,
     isresetPassword: true,
   });
   // step 4 create session to front end
@@ -153,7 +159,7 @@ const FPsendSMS = AsyncHandler(async (req, res, next) => {
   };
   // step 5 return response to clinet side
   return res.json({
-    message: `We sent sms to ${mobileNumber}  OTB code `,
+    message: `We sent sms to ${mobileNumber}  OTP code `,
     session,
   });
 });
@@ -161,7 +167,6 @@ const tokenForgetPassword = AsyncHandler(async (req, res, next) => {
   return res.json({ message: "vaild token" });
 });
 const ResetPassword = AsyncHandler(async (req, res, next) => {
-  
   await UserModel.findByIdAndUpdate(res.locals.user._id, {
     password: bcrypt.hashSync(req.body.newPassword, 8),
     isresetPassword: false,
@@ -194,3 +199,30 @@ export {
   recoveryUsers,
   FPsendSMS,
 };
+/*
+const client = Twilio(process.env.accountSid, process.env.authToken);
+  // Check if the user owner of the account
+  const user = await userModel.findOne({ email: req.body.email });
+  !user && res.json({ message: "Email is wronge" });
+  // Generate a random OTP
+  const otp = Math.floor(100000 + Math.random() * 900000);
+  // Save the OTP and its expiration time in the user's session or database
+  user.otp = otp;
+  await user.save();
+
+  // Send the OTP via SMS using Twilio
+  let SMSOptions = {
+    from: "+19723167063",
+    to: '+201010007883',
+    body: Your OTP is ${otp},
+  };
+
+  try {
+    const message = await client.messages.create(SMSOptions);
+    res.json({ success: true });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false });
+  }
+
+*/

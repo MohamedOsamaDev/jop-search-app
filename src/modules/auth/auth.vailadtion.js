@@ -45,7 +45,7 @@ const authResetPasswordVal = Joi.object({
     .pattern(/^[A-Z][a-z0-9#@]{8,30}$/)
     .required(),
   rePassword: Joi.valid(Joi.ref("newPassword")).required(),
-  OTB: Joi.string().required(),
+  OTP: Joi.string().required(),
 });
 export {
   signinSchemaVal,
