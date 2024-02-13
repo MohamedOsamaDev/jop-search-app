@@ -35,9 +35,10 @@ const schema = new mongoose.Schema(
 
 schema.pre("save", function () {
   if (this.password) this.password = bcrypt.hashSync(this.password, 8);
-  this.userName = this.firstName + this.lastName;
 });
-
+schema.pre(/^find/, function () {
+  this.userName = this.firstName + " " + this.lastName;
+});
 schema.pre("findOneAndUpdate", function () {
   if (this._update.password) {
     this.password = bcrypt.hashSync(this._update.password, 8);
