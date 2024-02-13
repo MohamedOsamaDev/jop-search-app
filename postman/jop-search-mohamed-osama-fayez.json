@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "b33577e9-e706-46df-b8ca-35a05eef0abf",
+		"_postman_id": "4cc1c3ef-b707-433f-ae9d-fe70e43eb493",
 		"name": "jop search project",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "31167202",
-		"_collection_link": "https://winter-firefly-764571.postman.co/workspace/My-Workspace~d5b6311b-3770-417b-85ef-666033e037c2/collection/31167202-b33577e9-e706-46df-b8ca-35a05eef0abf?action=share&source=collection_link&creator=31167202"
+		"_collection_link": "https://winter-firefly-764571.postman.co/workspace/My-Workspace~d5b6311b-3770-417b-85ef-666033e037c2/collection/31167202-4cc1c3ef-b707-433f-ae9d-fe70e43eb493?action=share&source=collection_link&creator=31167202"
 	},
 	"item": [
 		{
@@ -108,7 +108,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"firstName\":\"moahmed\",\r\n\"lastName\":\"osama\",\r\n\"rePassword\":\"Osama@1851fe\",\r\n\"password\":\"Osama@1851fe\",\r\n\"email\":\"mohamed10085@gmail.com\",\r\n\"DOB\":\"Wed Feb 07 2024 22:04:09 GMT+0200\",\r\n\"mobileNumber\":\"01067136331\"\r\n    \r\n}",
+							"raw": "{\r\n\"firstName\":\"moahmed\",\r\n\"lastName\":\"osama\",\r\n\"rePassword\":\"Osama@1851fe\",\r\n\"password\":\"Osama@1851fe\",\r\n\"email\":\"mohamed1s0085@gmail.com\",\r\n\"DOB\":\"Wed Feb 07 2024 22:04:09 GMT+0200\",\r\n\"mobileNumber\":\"0100671363031\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -135,7 +135,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"identifier\": \"mohamed10085@gmail.com\",\r\n    \"password\": \"Osama@1851fe\"\r\n}",
+							"raw": "{\r\n   \r\n\"password\":\"Osama@1851fe\",\r\n\"identifier\":\"mohamed1s0085@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -227,23 +227,35 @@
 				},
 				{
 					"name": "get my data",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjNTJjYmUzYzM2ZTgzYTAzMGMzOTJkIiwiaWF0IjoxNzA3NTI4ODMwfQ.9LT33nI1lTBzOBKQ7sDKqq3pKc5aUMlwyJh_vvd6fyI",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjYmNmODk5ODA1NTJlOTRhZDYwZWZiIiwiaWF0IjoxNzA3ODU1NzcyfQ.303hnv9t2sx5zTZI1sjxcmIDTznDumdebs6fEWHP4CQ",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{url}}/auth/65c4655380727b25876f5116",
+							"raw": "{{url}}/auth/me",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"auth",
-								"65c4655380727b25876f5116"
+								"me"
 							]
 						}
 					},
@@ -263,6 +275,30 @@
 								"auth",
 								"recoveryemail",
 								"mohamecd1@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find anthor user account",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjVjYmNmODk5ODA1NTJlOTRhZDYwZWZiIiwiaWF0IjoxNzA3ODU1NzcyfQ.303hnv9t2sx5zTZI1sjxcmIDTznDumdebs6fEWHP4CQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/auth/65cbcf89980552e94ad60efb",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"65cbcf89980552e94ad60efb"
 							]
 						}
 					},
