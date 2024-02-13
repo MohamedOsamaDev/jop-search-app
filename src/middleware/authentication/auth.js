@@ -13,7 +13,6 @@ export const auth = AsyncHandler(async (req, res, next) => {
     if (err) return next(new AppError(err, 401));
 
     const user = await UserModel.findById(decoded?.user);
-
     if (!user) return next(new AppError("user not found", 401));
     if (
       user.passwordChangedAt &&

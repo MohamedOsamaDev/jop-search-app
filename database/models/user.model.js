@@ -6,7 +6,7 @@ const schema = new mongoose.Schema(
   {
     firstName: { type: String, trim: true, required: true },
     lastName: { type: String, trim: true, required: true },
-    userName: { type: String, trim: true },
+
     email: {
       type: String,
       trim: true,
@@ -30,14 +30,17 @@ const schema = new mongoose.Schema(
     confirmEmail: { type: Boolean, default: false },
     isblocked: { type: Boolean, default: false },
   },
+  {
+    virtuals: true,
+  },
   { timestamps: true }
 );
 
 schema.pre("save", function () {
   if (this.password) this.password = bcrypt.hashSync(this.password, 8);
 });
-schema.pre(/^find/, function () {
-  this.userName = this.firstName + " " + this.lastName;
+schema.virtual("userName").get(function () {
+  return this.firstName + " " + this.lastName;
 });
 schema.pre("findOneAndUpdate", function () {
   if (this._update.password) {

@@ -70,7 +70,7 @@ const findMe = AsyncHandler(async (req, res, next) => {
   user = {
     firstName: user.firstName,
     lastName: user.lastName,
-    username: user.username,
+    userName: user.userName,
     email: user.email,
     recoveryEmail: user.recoveryEmail,
     mobileNumber: user.mobileNumber,
@@ -79,11 +79,18 @@ const findMe = AsyncHandler(async (req, res, next) => {
   return res.json({ user });
 });
 const findUserAccount = AsyncHandler(async (req, res, next) => {
-  let user = await UserModel.findById(req.params.id).select(
-    "email , lastName , firstName , userName , mobileNumber"
-  );
+  let user = await UserModel.findById(req.params.id);
   if (!user) return next(new AppError("user not found", 409));
-  return res.json({ user });
+  return res.json({
+    user: {
+      userName: user.userName,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      mobileNumber: user.mobileNumber,
+      DOB: user.DOB,
+    },
+  });
 });
 const changepassword = AsyncHandler(async (req, res, next) => {
   await UserModel.findByIdAndUpdate(res.locals.user._id, {
@@ -197,4 +204,3 @@ export {
   recoveryUsers,
   FPsendSMS,
 };
-
