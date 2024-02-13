@@ -197,30 +197,4 @@ export {
   recoveryUsers,
   FPsendSMS,
 };
-/*
-const client = Twilio(process.env.accountSid, process.env.authToken);
-  // Check if the user owner of the account
-  const user = await userModel.findOne({ email: req.body.email });
-  !user && res.json({ message: "Email is wronge" });
-  // Generate a random OTP
-  const otp = Math.floor(100000 + Math.random() * 900000);
-  // Save the OTP and its expiration time in the user's session or database
-  user.otp = otp;
-  await user.save();
 
-  // Send the OTP via SMS using Twilio
-  let SMSOptions = {
-    from: "+19723167063",
-    to: '+201010007883',
-    body: Your OTP is ${otp},
-  };
-
-  try {
-    const message = await client.messages.create(SMSOptions);
-    res.json({ success: true });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false });
-  }
-
-*/
