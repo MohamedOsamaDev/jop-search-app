@@ -5,7 +5,10 @@ const CreateCompanySchemaVal = Joi.object({
   description: Joi.string().min(3).max(500).required(),
   industry: Joi.string().min(3).max(200).required(),
   address: Joi.string().min(3).max(200).required(),
-  numberOfEmployees: Joi.number().required(),
+  numberOfEmployees: Joi.object({
+    max: Joi.number(),
+    min: Joi.number(),
+  }),
   companyEmail: Joi.string().email().required(),
 }); 
 const UpdateCompanySchemaVal = Joi.object({
