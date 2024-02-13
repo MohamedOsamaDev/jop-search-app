@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-
 import bcrypt from "bcrypt";
 import Twilio from "twilio";
 import { AppError } from "../../utils/AppError.js";
@@ -7,7 +6,6 @@ import { forPasswordEmail } from "../../services/mails/forgetPassword/forgetPass
 import { confirmEmail } from "../../services/mails/confirmation/confirmation.email.js";
 import { UserModel } from "../../../database/models/user.model.js";
 import { AsyncHandler } from "../../middleware/global-middleware/AsyncHandler.js";
-
 const signUp = AsyncHandler(async (req, res, next) => {
   confirmEmail(req.body.email);
   const user = new UserModel(req.body);
@@ -20,9 +18,8 @@ const signUp = AsyncHandler(async (req, res, next) => {
 const logIn = AsyncHandler(async (req, res, next) => {
   const { identifier, password } = req.body;
   let user = await UserModel.findOne({
-    $or: [{ email: identifier }, { mobileNumber: identifier }],
+    $or: [{ email: identifier?.toLowerCase() }, { mobileNumber: identifier }],
   });
-
   if (user && bcrypt.compareSync(password, user.password)) {
     if (user?.isblocked) return res.json({ message: "user is blocked" });
 
@@ -138,7 +135,7 @@ const FPsendSMS = AsyncHandler(async (req, res, next) => {
   const { mobileNumber } = req.body;
   // step 2  genrate OTP code 6 digits
   const OTP = Math.floor(100000 + Math.random() * 900000);
-  console.log("🚀 ~ FPsendSMS ~ OTP:", OTP)
+  console.log("🚀 ~ FPsendSMS ~ OTP:", OTP);
   let SMSOptions = {
     from: "+19723167063",
     to: mobileNumber,

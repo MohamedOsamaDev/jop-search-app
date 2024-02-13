@@ -5,7 +5,8 @@ export const isThisFeildsExist = async ({ model, feilds, operator }) => {
     filterObj = {
       ["$" + operator]: Object.keys(feilds).map((val, ind) => {
         return {
-          [Object.keys(feilds)[ind] || ""]: Object.values(feilds)[ind] || "",
+          [Object.keys(feilds)[ind] || ""]:
+            Object.values(feilds)[ind]?.toLowerCase() || "",
         };
       }),
     };
@@ -13,5 +14,3 @@ export const isThisFeildsExist = async ({ model, feilds, operator }) => {
   const document = await model.find(filterObj);
   return document;
 };
-
-
